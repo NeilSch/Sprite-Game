@@ -1,0 +1,163 @@
+<html>
+
+<body>
+
+
+
+
+<canvas id="canvas" style=""></canvas>
+
+
+
+
+<script>
+
+
+
+
+  var init_size = true;
+
+  // resize the canvas to fill browser window dynamically
+
+  window.addEventListener('resize', resizeCanvas, false);
+
+                    
+
+                    function resizeCanvas() {
+
+                            canvas.width = window.innerWidth;
+
+                            canvas.height = window.innerHeight;
+
+                            if(init_size){
+
+                                init_size = false;
+
+                                return;
+
+                            }
+
+                            for(var i=0; i < agents.length; ++i){
+
+                                    agents[i].canvas_resize();
+
+                            }
+
+                    }
+
+resizeCanvas();
+
+var loop_imgs = [];
+
+
+
+
+var img_0 = new Image();
+
+img_0.src = "imgs/0.png"
+
+
+
+
+var img_1 = new Image();
+
+img_1.src = "imgs/1.png"
+
+
+
+
+var img_2 = new Image();
+
+img_2.src = "imgs/2.png"
+
+
+
+
+var img_3 = new Image();
+
+img_3.src = "imgs/3.png"
+
+
+
+
+loop_imgs = [ img_0, img_1, img_2, img_3 ]
+
+
+
+
+var loop_index = 0;
+
+
+
+
+var context = canvas.getContext('2d');
+
+var x = 10;
+
+var x_dist = 50;
+
+var y = 10;
+
+var y_dist = 50;
+
+var last_animation_time =  new Date().getTime();
+
+var time_delta = 1;
+
+var bk_img = null;
+
+var img;
+
+function call_me_on_draw(){
+
+    window.requestAnimationFrame(call_me_on_draw);
+
+    if( (time_delta + last_animation_time) >  new Date().getTime() ){
+
+        return;
+
+    }
+
+    last_animation_time =  new Date().getTime();
+
+    if( bk_img != null){
+
+        context.putImageData( bk_img, x, y);
+
+    }
+
+    if( x > window.innerWidth){
+
+        x = 10;
+
+        y = y + y_dist;
+
+    }
+
+    x = x + x_dist;
+
+    bk_img = context.getImageData(x, y, 134, 142);
+
+    loop_index++;
+
+    if(loop_index > 3){
+
+        loop_index = 0;
+
+    }
+
+    img = loop_imgs[loop_index];
+
+    context.drawImage( img, x, y, 134, 142);
+
+}    
+
+call_me_on_draw();
+
+</script>
+
+</body>
+
+</html>
+
+
