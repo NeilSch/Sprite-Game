@@ -47,16 +47,16 @@ resizeCanvas();
 var loop_imgs = [];
 
 var img_0 = new Image();
-img_0.src = "imgs/0.png"
+img_0.src = "imgs/0U.png"
 
 var img_1 = new Image();
-img_1.src = "imgs/1.png"
+img_1.src = "imgs/1U.png"
 
 var img_2 = new Image();
-img_2.src = "imgs/2.png"
+img_2.src = "imgs/2U.png"
 
 var img_3 = new Image();
-img_3.src = "imgs/3.png"
+img_3.src = "imgs/3U.png"
 
 loop_imgs = [ img_0, img_1, img_2, img_3 ]
 
@@ -78,21 +78,37 @@ document.addEventListener('keydown', function(event)
 		{
 		y_dist = -2;
 		x_dist = 0;
+		img_0.src = "imgs/0U.png"
+		img_1.src = "imgs/1U.png"
+		img_2.src = "imgs/2U.png"
+		img_3.src = "imgs/3U.png"
 		}
 	if (event.code === 'ArrowDown')
                 {
                 y_dist = 2;
 		x_dist = 0;
+		img_0.src = "imgs/0D.png"
+                img_1.src = "imgs/1D.png"
+                img_2.src = "imgs/2D.png"
+                img_3.src = "imgs/3D.png"
                 }
-	if(event.code == 'ArrowLeft')
+	if(event.code === 'ArrowLeft')
 		{
 		y_dist = 0;
 		x_dist = -2;
+		img_0.src = "imgs/0L.png"
+                img_1.src = "imgs/1L.png"
+                img_2.src = "imgs/2L.png"
+                img_3.src = "imgs/3L.png"
 		}
-	if(event.code == 'ArrowRight')
+	if(event.code === 'ArrowRight')
 		{
 		y_dist = 0;
 		x_dist = 2;
+		img_0.src = "imgs/0R.png"
+                img_1.src = "imgs/1R.png"
+                img_2.src = "imgs/2R.png"
+                img_3.src = "imgs/3R.png"
 		}
 			});
 
