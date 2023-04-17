@@ -45,20 +45,42 @@
 resizeCanvas();
 
 var loop_imgs = [];
-
 var img_0 = new Image();
 img_0.src = "imgs/0U.png"
-
 var img_1 = new Image();
 img_1.src = "imgs/1U.png"
-
 var img_2 = new Image();
 img_2.src = "imgs/2U.png"
-
 var img_3 = new Image();
 img_3.src = "imgs/3U.png"
-
 loop_imgs = [ img_0, img_1, img_2, img_3 ]
+
+var idle_imgs = [];
+var idle_0 = new Image();
+idle_0.src = "imgs//0.png"
+var idle_1 = new Image();
+idle_1.src = "imgs//1.png"
+var idle_2 = new Image();
+idle_1.src = "imgs//2.png"
+var idle_3 = new Image();
+idle_1.src = "imgs//3.png"
+var idle_4 = new Image();
+idle_1.src = "imgs//4.png"
+var idle_5 = new Image();
+idle_1.src = "imgs//5.png"
+var idle_6 = new Image();
+idle_1.src = "imgs//6.png"
+var idle_7 = new Image();
+idle_1.src = "imgs//7.png"
+var idle_8 = new Image();
+idle_1.src = "imgs//8.png"
+var idle_9 = new Image();
+idle_1.src = "imgs//9.png"
+var idle_10 = new Image();
+idle_1.src = "imgs//10.png"
+var idle_11 = new Image();
+idle_1.src = "imgs//11.png"
+idle_imgs = [ idle_0, idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11];
 
 // initial parameter setups
 var loop_index = 0;
@@ -68,49 +90,61 @@ var x_dist = 0;
 var y = 10;
 var y_dist = 0;
 var last_animation_time =  new Date().getTime();
-var time_delta = 1;
+var time_delta = 4;
 var bk_img = null;
 var img;
+//basically a bool that checks what sprite list i need, no clue why I did it this way
+var checker = 0;
 
 document.addEventListener('keydown', function(event)
 		{
 	if (event.code === 'ArrowUp')
 		{
-		y_dist = -2;
+		y_dist = -4;
 		x_dist = 0;
 		img_0.src = "imgs/0U.png"
 		img_1.src = "imgs/1U.png"
 		img_2.src = "imgs/2U.png"
 		img_3.src = "imgs/3U.png"
+		checker = 1;
 		}
 	if (event.code === 'ArrowDown')
                 {
-                y_dist = 2;
+                y_dist = 4;
 		x_dist = 0;
 		img_0.src = "imgs/0D.png"
                 img_1.src = "imgs/1D.png"
                 img_2.src = "imgs/2D.png"
                 img_3.src = "imgs/3D.png"
+		checker = 1;
                 }
 	if(event.code === 'ArrowLeft')
 		{
 		y_dist = 0;
-		x_dist = -2;
+		x_dist = -4;
 		img_0.src = "imgs/0L.png"
                 img_1.src = "imgs/1L.png"
                 img_2.src = "imgs/2L.png"
                 img_3.src = "imgs/3L.png"
+		checker = 1;
 		}
 	if(event.code === 'ArrowRight')
 		{
 		y_dist = 0;
-		x_dist = 2;
+		x_dist = 4;
 		img_0.src = "imgs/0R.png"
                 img_1.src = "imgs/1R.png"
                 img_2.src = "imgs/2R.png"
                 img_3.src = "imgs/3R.png"
+		checker = 1;
 		}
 			});
+	document.addEventListener('keyup', function(event)
+                {
+		y_dist = 0;
+		x_dist = 0;
+		checker = 0;
+				});
 
 function call_me_on_draw()
 {
@@ -125,14 +159,25 @@ window.requestAnimationFrame(call_me_on_draw);
     }
 x = x + x_dist;
 y = y + y_dist;
+
 bk_img = context.getImageData(x, y, 134, 142);
 loop_index++;
+if(checker == 1)
+{
     if(loop_index > 3)
 	{
         	loop_index = 0;
 	}
-
 img = loop_imgs[loop_index];
+}
+if(checker == 0)
+{
+	if(loop_index > 11)
+	{
+		loop_index = 0;
+	}
+img = idle_imgs[loop_index];
+}
 context.drawImage( img, x, y, 134, 142);
 
 }
