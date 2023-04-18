@@ -159,7 +159,23 @@ window.requestAnimationFrame(call_me_on_draw);
     }
 x = x + x_dist;
 y = y + y_dist;
+if(x<10)
+{
+x=10;
+	}
+if(y<10)
+{
+y=10;
+	}
 
+if(x> canvas.width-142)
+        {
+        x=canvas.width-142;
+                }
+if(y> canvas.height-142)
+        {
+        y=canvas.height-142;
+                }
 bk_img = context.getImageData(x, y, 134, 142);
 loop_index++;
 if(checker == 1)
